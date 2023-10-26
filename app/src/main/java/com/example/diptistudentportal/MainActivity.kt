@@ -91,16 +91,22 @@ class MainActivity : AppCompatActivity(),DataAdapter.ItemClickListener {
         binding.addBtn.text = "Update"
 
         binding.addBtn.setOnClickListener {
-            val updateTitle = binding.nameET.text.toString()
-            val updateDescription = binding.emailET.text.toString()
+            val updateStudentId = binding.studentIdET.text.toString()
+            val updateName = binding.nameET.text.toString()
+            val updateEmail = binding.emailET.text.toString()
+            val updateSubject = binding.subjectET.text.toString()
+            val updateBirthdate = binding.birthdateET.text.toString()
 
-            if (updateTitle.isNotEmpty() && updateDescription.isNotEmpty()){
-                val updateData = Data(data.id, updateTitle,updateDescription)
+            if (updateStudentId.isNotEmpty() && updateName.isNotEmpty() && updateEmail.isNotEmpty() && updateSubject.isNotEmpty() && updateBirthdate.isNotEmpty()){
+                val updateData = Data(data.id,updateStudentId, updateName,updateEmail,updateSubject,updateBirthdate)
 
                 dataCollection.document(data.id!!).set(updateData)
                     .addOnSuccessListener {
+                        binding.studentIdET.text?.clear()
                         binding.nameET.text?.clear()
                         binding.emailET.text?.clear()
+                        binding.subjectET.text?.clear()
+                        binding.birthdateET.text?.clear()
                         adapter.notifyDataSetChanged()
                         Toast.makeText(this,"Data Updated",Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this,MainActivity::class.java))
