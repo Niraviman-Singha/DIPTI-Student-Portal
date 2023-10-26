@@ -70,8 +70,11 @@ class MainActivity : AppCompatActivity(),DataAdapter.ItemClickListener {
                 data.add(newData)
                 adapter.notifyDataSetChanged()
                 Toast.makeText(this, "Data added Successfully", Toast.LENGTH_SHORT).show()
+                binding.studentIdET.text?.clear()
                 binding.nameET.text?.clear()
                 binding.emailET.text?.clear()
+                binding.subjectET.text?.clear()
+                binding.birthdateET.text?.clear()
                 fetchData()
             }
             .addOnFailureListener {
@@ -80,8 +83,11 @@ class MainActivity : AppCompatActivity(),DataAdapter.ItemClickListener {
     }
 
     override fun onEditItemClick(data: Data) {
+        binding.studentIdET.setText(data.studentid)
         binding.nameET.setText(data.name)
         binding.emailET.setText(data.email)
+        binding.subjectET.setText(data.subject)
+        binding.birthdateET.setText(data.birthdate)
         binding.addBtn.text = "Update"
 
         binding.addBtn.setOnClickListener {
